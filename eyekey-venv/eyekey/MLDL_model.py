@@ -4,6 +4,8 @@ from PIL import Image, ImageDraw
 
 ############### OCR ###############
 from google.cloud import vision # Imports the Google Cloud client library
+i = 0
+FILE_PATH = './files/'
 
 def run_model(file_dir1, file_dir2):
     # Set environmen`t variable
@@ -80,4 +82,7 @@ def run_model(file_dir1, file_dir2):
         bound = [first_array[i]+10, second_array[i]-10, third_array[i]-10, fourth_array[i]+10]
         draw.rectangle((bound), outline=(255,0,0), width = 6)
 
-        img.show()
+    # img.show()
+    i = i+1
+    img.save(FILE_PATH + f'{i}.jpg')
+    return(FILE_PATH + f'{i}.jpg')
