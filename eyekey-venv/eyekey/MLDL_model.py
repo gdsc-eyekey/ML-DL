@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw
 ############### OCR ###############
 from google.cloud import vision # Imports the Google Cloud client library
 
-def run_model():
+def run_model(file_dir1, file_dir2):
     # Set environmen`t variable
     credential_path = "/Users/ihaneul/Desktop/mldl/eyekey-venv/eyekey/eyekey-OCR.json"
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credential_path
@@ -14,15 +14,16 @@ def run_model():
     ocr_client = vision.ImageAnnotatorClient()
 
     # The name of the image file to annotate
-
-    image_name = os.path.abspath('/Users/ihaneul/Desktop/mldl/eyekey-venv/eyekey/files/lott.jpeg')
+    # image_name = os.path.abspath('/Users/ihaneul/Desktop/mldl/eyekey-venv/eyekey/files/lott.jpeg')
+    image_name = os.path.abspath(file_dir1)
 
     # Loads the image into memory
     with io.open(image_name, 'rb') as image_file:
         ocr_content = image_file.read()
 
     image = vision.Image(content=ocr_content)
-    img = Image.open('files/lott.jpeg').convert('RGB') # 사진은 .. 앱에서 촬영한 이미지로 받아오도록 바꿔야 함
+    # img = Image.open('files/lott.jpeg').convert('RGB') # 사진은 .. 앱에서 촬영한 이미지로 받아오도록 바꿔야 함
+    img = Image.open(file_dir1[2:]).convert('RGB')
 
     # Performs text detection on the image file
     ocr_response = ocr_client.text_detection(image=image)

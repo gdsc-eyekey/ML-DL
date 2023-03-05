@@ -35,6 +35,6 @@ def uploader_file():
         print(file_dir2)
 
         # return send_file(MLDL_model.run_model(os.path.abspath(file_dir)))
-        MLDL_model.run_model()
+        MLDL_model.run_model(file_dir1, file_dir2)
         return send_file(file_dir1)
         
