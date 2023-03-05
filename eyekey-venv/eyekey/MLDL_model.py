@@ -38,7 +38,8 @@ def run_model(file_dir1, file_dir2):
 
     stt_client = speech.SpeechClient()
 
-    stt_file = '/Users/ihaneul/Desktop/mldl/eyekey-venv/eyekey/files/불고기.mp3'
+    stt_file = os.path.abspath(file_dir2)
+    # stt_file = '/Users/ihaneul/Desktop/mldl/eyekey-venv/eyekey/files/불고기.mp3'
 
     with io.open(stt_file, 'rb') as audio_file:
         stt_content = audio_file.read()
